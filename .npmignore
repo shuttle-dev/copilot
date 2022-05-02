@@ -1,0 +1,15 @@
+node_modules
+.idea
+asset
+**/*.ts
+**/*.d.ts
+coverage
+tsconfig.json
+gulpfile.js
+gulp
+.editorconfig
+.eslintrc.js
+.github
+jest-config.json
+test
+yarn-error.log

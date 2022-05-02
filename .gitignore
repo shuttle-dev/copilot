@@ -1,0 +1,23 @@
+# build
+action/**/*.js
+bin/**/*.js
+command/**/*.js
+global/**/*.js
+lib/**/*.js
+model/**/*.js
+prompt/**/*.js
+router/**/*.js
+gulp/**/*.js
+test/**/*.js
+
+# coverage
+coverage
+
+# misc
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+.DS_Store
+*.map
+yarn-error.log

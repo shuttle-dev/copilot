@@ -1,0 +1,27 @@
+{
+  "preset": "ts-jest",
+  "roots": ["<rootDir>/test"],
+  "testEnvironment": "node",
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverage": true,
+  "coverageDirectory": "<rootDir>/coverage",
+  "coverageThreshold": {
+    "global": {
+      "lines": 90,
+      "statements": 90
+    }
+  },
+  "collectCoverageFrom": [
+		"<rootDir>/action/**/*.ts*",
+		"<rootDir>/bin/**/*.ts*",
+		"<rootDir>/command/**/*.ts*",
+		"<rootDir>/global/**/*.ts*",
+		"<rootDir>/lib/**/*.ts*",
+		"<rootDir>/model/**/*.ts*",
+		"<rootDir>/prompt/**/*.ts*",
+		"<rootDir>/router/**/*.ts*"
+  ]
+}
