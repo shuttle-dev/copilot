@@ -1,6 +1,6 @@
 {
   "name": "@shuttle-dev/copilot",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "Command-line process manager w/o misfires.",
   "repository": "https://github.com/shuttle-dev/copilot",
   "author": "Michael Freund <michael@iamfreund.com>",
