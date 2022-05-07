@@ -38,6 +38,7 @@ const MESSAGE = {
 	COMMAND_MENU_DELETE_QUESTION: `${chalk.dim('I can')} ${chalk.underline('delete the command')} ${chalk.red('(Danger Zone)')}`,
 	COMMAND_CREATE_NAME_QUESTION: 'How should I name the command?',
 	COMMAND_CREATE_SCRIPT_QUESTION: 'Which script should I execute?',
+	COMMAND_CREATE_PREFIX_COLOR_QUESTION: 'Which prefix color should I use?',
 	COMMAND_CREATE_EXECUTOR_QUESTION: 'Which executor should I use?',
 	COMMAND_CREATE_DIRECTORY_QUESTION: 'Which working directory should I use? [press tab for autocomplete]',
 	COMMAND_UPDATE_NAME_QUESTION: 'How should I name the command?',
