@@ -1,6 +1,7 @@
+import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-import { Executor } from '../../../global/types';
+import { Executor, PrefixColor } from '../../../global/types';
 import MESSAGE from '../../../lib/ui/message';
 import { Command } from '../../../model/command.model';
 import { Environment } from '../../../model/environment.model';
@@ -34,6 +35,23 @@ export class CommandCreatePrompt extends AbstractPrompt {
 			{ default: 'start', validator: CommandScriptValidator.validate },
 		);
 
+		const commandCreatePrefixColorQuestion = new SelectQuestion(
+			'prefixColor',
+			MESSAGE.COMMAND_CREATE_PREFIX_COLOR_QUESTION,
+			[
+				{ name: chalk[PrefixColor.BLACK](PrefixColor.BLACK), value: PrefixColor.BLACK },
+				{ name: chalk[PrefixColor.RED](PrefixColor.RED), value: PrefixColor.RED },
+				{ name: chalk[PrefixColor.GREEN](PrefixColor.GREEN), value: PrefixColor.GREEN },
+				{ name: chalk[PrefixColor.YELLOW](PrefixColor.YELLOW), value: PrefixColor.YELLOW },
+				{ name: chalk[PrefixColor.BLUE](PrefixColor.BLUE), value: PrefixColor.BLUE },
+				{ name: chalk[PrefixColor.MAGENTA](PrefixColor.MAGENTA), value: PrefixColor.MAGENTA },
+				{ name: chalk[PrefixColor.CYAN](PrefixColor.CYAN), value: PrefixColor.CYAN },
+				{ name: chalk[PrefixColor.WHITE](PrefixColor.WHITE), value: PrefixColor.WHITE },
+				{ name: chalk[PrefixColor.GRAY](PrefixColor.GRAY), value: PrefixColor.GRAY },
+			],
+			{ default: PrefixColor.YELLOW },
+		);
+
 		const commandCreateExecutorQuestion = new SelectQuestion(
 			'executor',
 			MESSAGE.COMMAND_CREATE_EXECUTOR_QUESTION,
@@ -55,6 +73,7 @@ export class CommandCreatePrompt extends AbstractPrompt {
 		const data = await inquirer.prompt([
 			commandCreateNameQuestion.ask(),
 			commandCreateScriptQuestion.ask(),
+			commandCreatePrefixColorQuestion.ask(),
 			commandCreateExecutorQuestion.ask(),
 			commandCreateDirectoryQuestion.ask(),
 		]);

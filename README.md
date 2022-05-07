@@ -4,9 +4,7 @@
 
 @shuttle-dev/copilot is a command-line process manager by shuttle™ that allows you to manage and launch your development environments from the command-line without hassle.
 
-````shell
-> ~ dev/ shuttle launch <env>
-````
+![shuttle-copilot-demo](asset/shuttle-copilot-github-demo.gif)
 
 ## What is shuttle
 
