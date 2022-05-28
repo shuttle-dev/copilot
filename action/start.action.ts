@@ -26,12 +26,22 @@ export class StartAction extends AbstractAction {
 
 		const settings = SettingsRepository.get();
 
-		// @TODO: optimize process termination
-		concurrently(commands, {
-			prefix: `${settings.prefixFormat} `,
-			timestampFormat: 'dd.MM.yyyy, hh:mm:ss',
-			killOthers: ['failure', 'success'],
-			restartTries: 3,
-		});
+		try {
+			await new Promise((resolve, reject) => {
+				const { result } = concurrently(commands, {
+					prefix: `${settings.prefixFormat} `,
+					timestampFormat: 'dd.MM.yyyy, hh:mm:ss',
+					killOthers: ['failure', 'success'],
+					restartTries: 3,
+				});
+
+				result.then(resolve, reject);
+			});
+
+			process.exit(0);
+		} catch (err) {
+			console.log(err);
+			process.exit(1);
+		}
 	}
 }

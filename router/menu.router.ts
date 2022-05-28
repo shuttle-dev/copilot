@@ -1,6 +1,7 @@
 import { commandCreateRoute } from './route/command/command.create.route';
 import { commandDeleteRoute } from './route/command/command.delete.route';
 import { commandDirectoryRoute } from './route/command/command.directory.route';
+import { commandEnvironmentVariablesRoute } from './route/command/command.environment-variables.route';
 import { commandExecutorRoute } from './route/command/command.executor.route';
 import { commandListRoute } from './route/command/command.list.route';
 import { commandMenuRoute } from './route/command/command.menu.route';
@@ -34,6 +35,7 @@ export async function menuRouter() {
 	router.register<'id'>('/command/:id', commandMenuRoute);
 	router.register<'id'>('/command/:id/name', commandNameRoute);
 	router.register<'id'>('/command/:id/script', commandScriptRoute);
+	router.register<'id'>('/command/:id/environment-variables', commandEnvironmentVariablesRoute);
 	router.register<'id'>('/command/:id/prefix-color', commandPrefixColorRoute);
 	router.register<'id'>('/command/:id/executor', commandExecutorRoute);
 	router.register<'id'>('/command/:id/directory', commandDirectoryRoute);

@@ -35,6 +35,11 @@ export class CommandCreatePrompt extends AbstractPrompt {
 			{ default: 'start', validator: CommandScriptValidator.validate },
 		);
 
+		const commandCreateEnvironmentVariablesQuestion = new InputQuestion(
+			'environmentVariables',
+			MESSAGE.COMMAND_CREATE_ENVIRONMENT_VARIABLES_QUESTION,
+		);
+
 		const commandCreatePrefixColorQuestion = new SelectQuestion(
 			'prefixColor',
 			MESSAGE.COMMAND_CREATE_PREFIX_COLOR_QUESTION,
@@ -73,6 +78,7 @@ export class CommandCreatePrompt extends AbstractPrompt {
 		const data = await inquirer.prompt([
 			commandCreateNameQuestion.ask(),
 			commandCreateScriptQuestion.ask(),
+			commandCreateEnvironmentVariablesQuestion.ask(),
 			commandCreatePrefixColorQuestion.ask(),
 			commandCreateExecutorQuestion.ask(),
 			commandCreateDirectoryQuestion.ask(),

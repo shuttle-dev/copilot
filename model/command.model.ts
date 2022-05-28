@@ -16,6 +16,8 @@ export class Command extends StaticFactory {
 
 	script: string = '';
 
+	environmentVariables: string = '';
+
 	prefixColor: PrefixColor = PrefixColor.YELLOW;
 
 	executor: Executor = Executor.YARN;
@@ -48,6 +50,10 @@ export class Command extends StaticFactory {
 
 	setScript(script: string) {
 		this.script = script;
+	}
+
+	setEnvironmentVariables(environmentVariables: string) {
+		this.environmentVariables = environmentVariables;
 	}
 
 	setPrefixColor(prefixColor: PrefixColor) {
