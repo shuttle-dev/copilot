@@ -1,6 +1,10 @@
 import { v4 as uuid } from 'uuid';
 
-import { Executor, PrefixColor } from '../global/types';
+import {
+	Executor,
+	PrefixColor,
+	PrefixFormat,
+} from '../global/types';
 import { StaticFactory } from './factory/static.factory';
 
 export class Command extends StaticFactory {
@@ -17,6 +21,16 @@ export class Command extends StaticFactory {
 	executor: Executor = Executor.YARN;
 
 	directory: string = process.cwd();
+
+	static defaults: Command = Command.create({
+		id: uuid(),
+		environmentId: '',
+		name: '',
+		script: '',
+		prefixFormat: PrefixFormat.NAME,
+		executor: Executor.YARN,
+		directory: process.cwd(),
+	});
 
 	constructor() {
 		super();
