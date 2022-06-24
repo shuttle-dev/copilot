@@ -10,21 +10,15 @@ export class ListAction extends AbstractAction {
 	public async handle() {
 		const environments = EnvironmentRepository.getAll();
 
-		const table: any = new Table({ head: ['name', 'executor', 'command', 'directory'], wordWrap: false });
+		const table: any = new Table({ head: ['name', 'executor', 'environment variables', 'command', 'directory'], wordWrap: false });
 
 		each(environments, (environment) => {
-			table.push([
-				{ content: environment.name },
-				{ content: chalk.dim(environment.executor) },
-				{ content: '' },
-				{ content: '' },
-			]);
-
 			const commands = CommandRepository.getAll(environment.id);
 
 			each(commands, (command) => table.push([
 				{ content: chalk.dim(environment.name) },
 				{ content: command.executor },
+				{ content: command.environmentVariables },
 				{ content: command.name },
 				{ content: command.directory },
 			]));
