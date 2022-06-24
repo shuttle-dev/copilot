@@ -6,7 +6,7 @@ import { Command } from '../../model/command.model';
 import { Environment } from '../../model/environment.model';
 import { Settings } from '../../model/settings.model';
 import { Config } from '../config/config';
-import { createDirIfNotExists } from '../util/filesystem';
+import { ensureDirectoryExists, ensureFileExists } from '../util/filesystem';
 
 interface IFileSync {
 	createdAt: Date;
@@ -18,6 +18,8 @@ interface IFileSync {
 
 export class Database {
 	static instance: Database;
+
+	static config: string;
 
 	private readonly file;
 
@@ -34,9 +36,14 @@ export class Database {
 	};
 
 	private constructor() {
-		createDirIfNotExists(Config.configDir);
+		if (Database.config) {
+			ensureFileExists(Database.config);
+			this.file = Database.config;
+		} else {
+			ensureDirectoryExists(Config.configDir);
+			this.file = join(Config.configDir, 'config.json');
+		}
 
-		this.file = join(Config.configDir, 'config.json');
 		this.adapter = new FileSync<IFileSync>(this.file);
 		this.db = lowdb(this.adapter);
 
@@ -49,6 +56,10 @@ export class Database {
 		}
 
 		return Database.instance;
+	}
+
+	public static setConfing(config: string): void {
+		Database.config = config;
 	}
 
 	private updateUpdatedAt() {

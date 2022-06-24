@@ -15,6 +15,7 @@ coverage
 
 # misc
 .DS_Store
+.shuttle
 .idea/
 .vscode/
 node_modules/

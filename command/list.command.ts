@@ -7,7 +7,6 @@ export class ListCommand extends AbstractCommand {
 		program
 			.command('list')
 			.alias('l')
-			.allowUnknownOption()
 			.description('list available environments')
 			.action(async () => {
 				try {

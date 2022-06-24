@@ -1,5 +1,6 @@
 import concurrently from 'concurrently';
 
+import { Database } from '../lib/database/database';
 import { CommandRepository } from '../model/repository/command.repository';
 import { EnvironmentRepository } from '../model/repository/environment.repository';
 import { SettingsRepository } from '../model/repository/settings.repository';
@@ -9,8 +10,11 @@ import {
 	Input,
 } from './abstract.action';
 
-export class StartAction extends AbstractAction {
-	public async handle(inputs: Input[]) {
+export class DefaultAction extends AbstractAction {
+	public async handle(inputs: Input[], options: Input[]) {
+		const config = getInputValue(options, 'config');
+		Database.setConfing(config);
+
 		const name = getInputValue(inputs, 'environment');
 		const environment = EnvironmentRepository.getByName(name);
 

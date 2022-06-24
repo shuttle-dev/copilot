@@ -6,7 +6,7 @@ export class MenuCommand extends AbstractCommand {
 	public load(program: Command) {
 		program
 			.command('menu')
-			.description('display copilot main menu (default)')
+			.description('display copilot main menu')
 			.action(async () => {
 				try {
 					await this.action.handle();
