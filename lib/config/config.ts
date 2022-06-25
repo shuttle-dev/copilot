@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 export class ConfigHomeDirNotFoundException extends Error {
 	constructor(message: string) {
 		super(message);
@@ -31,11 +33,27 @@ export class Config {
 		return directory;
 	}
 
-	public static get configDir(): string {
-		return `${Config.homeDir}/.shuttle`;
+	public static get configDirectoryName(): string {
+		return '.shuttle';
+	}
+
+	public static get configFileName(): string {
+		return 'config.json';
 	}
 
 	public static get workingDir(): string {
 		return process.cwd();
+	}
+
+	public static get configDirectory(): string {
+		return join(Config.homeDir, Config.configDirectoryName);
+	}
+
+	public static get configFile(): string {
+		return join(Config.homeDir, Config.configDirectoryName, Config.configFileName);
+	}
+
+	public static get localConfigFile(): string {
+		return join(Config.workingDir, Config.configDirectoryName, Config.configFileName);
 	}
 }

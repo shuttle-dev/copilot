@@ -5,8 +5,8 @@ import { AbstractCommand } from './abstract.command';
 export class MenuCommand extends AbstractCommand {
 	public load(program: Command) {
 		program
-			.command('menu')
-			.description('display copilot main menu')
+			.command('menu', { isDefault: true })
+			.description('display copilot main menu (default)')
 			.action(async () => {
 				try {
 					await this.action.handle();

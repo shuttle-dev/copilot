@@ -1,6 +1,5 @@
 import lowdb from 'lowdb';
 import FileSync from 'lowdb/adapters/FileSync';
-import { join } from 'path';
 
 import { Command } from '../../model/command.model';
 import { Environment } from '../../model/environment.model';
@@ -19,8 +18,6 @@ interface IFileSync {
 export class Database {
 	static instance: Database;
 
-	static config: string;
-
 	private readonly file;
 
 	private readonly adapter;
@@ -36,12 +33,13 @@ export class Database {
 	};
 
 	private constructor() {
-		if (Database.config) {
-			ensureFileExists(Database.config);
-			this.file = Database.config;
+		const useLocalConfiguration = ensureFileExists(Config.localConfigFile);
+
+		if (useLocalConfiguration) {
+			this.file = Config.localConfigFile;
 		} else {
-			ensureDirectoryExists(Config.configDir);
-			this.file = join(Config.configDir, 'config.json');
+			ensureDirectoryExists(Config.configDirectory);
+			this.file = Config.configFile;
 		}
 
 		this.adapter = new FileSync<IFileSync>(this.file);
@@ -56,10 +54,6 @@ export class Database {
 		}
 
 		return Database.instance;
-	}
-
-	public static setConfing(config: string): void {
-		Database.config = config;
 	}
 
 	private updateUpdatedAt() {
